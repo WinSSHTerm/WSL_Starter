@@ -1,5 +1,5 @@
 # WSL Starter
-This is a feature in WinSSHTerm, which will allow you easily access your linux distribution locally on Windows (WSL) with PuTTY via SSH. Once everything is set up, WinSSHTerm will automatically launch the SSH server so you can quickly connect to your WSL distribution.
+This is a feature in WinSSHTerm, which will allow you easily access your linux distribution locally on Windows ([WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)) with PuTTY via SSH. Once everything is set up, WinSSHTerm will automatically launch the SSH server so you can quickly connect to your WSL distribution.
 ## Steps
 ### Prerequisites
 1. Ensure that WSL is installed on your Windows system. You can see the install instructions [here](https://docs.microsoft.com/en-us/windows/wsl/install).
