@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<WinSSHTerm_WSL_Starter>
+  <install exec="%SYSTEMROOT%\system32\cmd.exe">
+<![CDATA[
+  /c start ms-windows-store://pdp/?ProductId=9MSVKQC78PK6
+]]>
+  </install>
+  <setup_ssh exec="debian.exe">
+<![CDATA[
+  run "echo '{{WSL.PASS}}' | sudo -S dpkg -l | grep ^ii | sed 's_  _\t_g' | cut -f 2 | grep openssh-server 1> /dev/null && echo '{{WSL.PASS}}' | sudo -S cp /etc/ssh/sshd_config /etc/ssh/sshd_config.winsshterm.bak && echo '{{WSL.PASS}}' | sudo -S apt-get purge -y openssh-server 2>/dev/null"
+  run "echo '{{WSL.PASS}}' | sudo -S apt-get update && echo '{{WSL.PASS}}' | sudo -S apt-get install -y openssh-server"
+  run "echo '{{WSL.PASS}}' | sudo -S ssh-keygen -A"
+  run "echo '{{WSL.PASS}}' | sudo -S sed -i -e '/^#[[:space:]]*[[:space:]]*Port[[:space:]].*/ s/^#[[:space:]]*[[:space:]]*\(Port\)[[:space:]]\(.*\)/\1 {{WSL.PORT}}/i' -- /etc/ssh/sshd_config"
+  run "echo '{{WSL.PASS}}' | sudo -S sed -i -e '/^#[[:space:]]*[[:space:]]*ListenAddress[[:space:]].*0\.0\.0\.0/ s/^#[[:space:]]*[[:space:]]*\(ListenAddress\)[[:space:]]\(.*\)/\1 {{WSL.LISTENADDRESS}}/i' -- /etc/ssh/sshd_config"
+  run "echo '{{WSL.PASS}}' | sudo -S sed -i -e '/^[[:space:]]*PasswordAuthentication[[:space:]].*/ s/^[[:space:]]*\(PasswordAuthentication\)[[:space:]]\(.*\)/\1 yes/i' -- /etc/ssh/sshd_config"
+  run "echo '{{WSL.PASS}}' | sudo -S diff /etc/ssh/sshd_config /etc/ssh/sshd_config.winsshterm.bak &> /dev/null; if [ $? -ne 0 ]; then echo '{{WSL.PASS}}' | sudo -S mv /etc/ssh/sshd_config.winsshterm.bak /etc/ssh/sshd_config.$(date +%Y%m%d_%H%M%S).bak; else echo '{{WSL.PASS}}' | sudo -S rm /etc/ssh/sshd_config.winsshterm.bak; fi
+]]>
+  </setup_ssh>
+  <startup_ssh exec="debian.exe">
+<![CDATA[
+   run "echo '{{WSL.PASS}}' | sudo -S /etc/init.d/ssh start"
+]]>
+  </startup_ssh>
+</WinSSHTerm_WSL_Starter>
