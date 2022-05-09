@@ -1,5 +1,10 @@
 # WSL Starter
 This is a feature in [WinSSHTerm](https://winsshterm.blogspot.com), which will allow you easily access your linux distribution locally on Windows ([WSL](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux)) with PuTTY via SSH. Once everything is set up, WinSSHTerm will automatically launch the SSH server so you can quickly connect to your WSL distribution.
+
+Walkthrough for Ubuntu 22.04 LTS on Youtube
+
+[![Demonstration on Youtube (Ubuntu 22.04 LTS)](https://img.youtube.com/vi/WSsmzIAXB-k/0.jpg)](https://www.youtube.com/watch?v=WSsmzIAXB-k)
+
 ## Steps
 ### Prerequisites
 1. Ensure that WSL is installed on your Windows system. You can see the install instructions [here](https://docs.microsoft.com/en-us/windows/wsl/install).
