@@ -3,12 +3,12 @@ This is a feature in [WinSSHTerm](https://winsshterm.blogspot.com), which will a
 
 Walkthrough for Ubuntu 22.04 LTS on Youtube
 
-[![Demonstration on Youtube (Ubuntu 22.04 LTS)](https://img.youtube.com/vi/WSsmzIAXB-k/0.jpg)](https://www.youtube.com/watch?v=WSsmzIAXB-k)
+[![Demonstration on Youtube (Ubuntu 22.04 LTS)](https://img.youtube.com/vi/gjvxvKIjmro/0.jpg)](https://www.youtube.com/watch?v=gjvxvKIjmro)
 
 ## Steps
 ### Prerequisites
 1. Ensure that WSL is installed on your Windows system. You can see the install instructions [here](https://docs.microsoft.com/en-us/windows/wsl/install).
-2. Ensure that you use WinSSHTerm 2.19.0 or higher.
+2. Ensure that you use WinSSHTerm 2.21.0 or higher.
 ### Install a linux distribution and setup a user
 3. Open up WinSSHTerm and go to Tools->WSL Starter. You will see the `WSL Starter` window.
 4. Choose a linux distribution on [https://github.com/WinSSHTerm/WSL_Starter](https://github.com/WinSSHTerm/WSL_Starter) and copy&paste the contents of the XML file into the text field of the `WLS Starter` window.
@@ -17,14 +17,13 @@ Walkthrough for Ubuntu 22.04 LTS on Youtube
 ### Install, configure and launch the SSH server
 7. Now enter the username and password from step 6 into the corresponding fields in the "WSL Starter" window. The default values for "ListenAddress" and "Port" should be fine if you only use one linux distribution at the same time.
 8. Click on `Setup SSH` to install and configure the SSH server. This might take a few minutes.
-9. Launch the SSH server by clicking on `Startup SSH`. Tick the check box `Run "Startup SSH" when WinSSHTerm starts`.
+9. Tick the check box `Run "Startup SSH" automatically`.
 ### Add a new connection to WinSSHTerm and start the session
 10. Now click on `Close` to close the `WSL Starter` window.
 11. On the left, in the `Connections` window, right-click the `Connect` node and choose `Add connection`
-12. Select the new connection, and fill out these field in the `Configuration` window (use the values from the `WSL Starter` window), e.g.:
+12. Select the new connection, and fill out these fields in the `Configuration` window (use the values from the `WSL Starter` window), e.g.:
     - Name: WSL (or choose any other name)
     - Host/IP: 127.0.0.1
     - Port: 2222
-    - User: myuser
-    - Password: mypassword
-13. Now double-click the connection to open up the PuTTY session. You should now be successfully logged in with your user. You should be able to become root with `sudo su -`
+    - Note: The fields `User` and `Password` will be automatically used from the `WSL Starter` window, if they are empty
+13. Now double-click the connection to open up the PuTTY session. The SSH server will be started, if needed. You should now be successfully logged in with your user. You should be able to become root with `sudo su -`
