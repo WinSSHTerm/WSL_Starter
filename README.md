@@ -8,7 +8,7 @@ Walkthrough for Ubuntu 22.04 LTS on Youtube
 ## Steps
 ### Prerequisites
 1. Ensure that WSL is installed on your Windows system. You can see the install instructions [here](https://docs.microsoft.com/en-us/windows/wsl/install).
-2. Ensure that you use WinSSHTerm 2.21.0 or higher.
+2. Ensure that you use WinSSHTerm 2.33.0 or higher.
 ### Install a linux distribution and setup a user
 3. Open up WinSSHTerm and go to Tools->WSL Starter. You will see the `WSL Starter` window.
 4. Choose a linux distribution on [https://github.com/WinSSHTerm/WSL_Starter](https://github.com/WinSSHTerm/WSL_Starter) and copy&paste the contents of the XML file into the text field of the `WLS Starter` window.

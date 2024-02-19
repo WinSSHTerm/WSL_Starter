@@ -1,26 +1,22 @@
-<?xml version="1.0"?>
-<WinSSHTerm_WSL_Starter>
-  <install exec="%SYSTEMROOT%\system32\cmd.exe">
-<![CDATA[
-  /c start ms-windows-store://pdp/?ProductId=9PN20MSR04DW
-]]>
+<?xml version="1.0" encoding="utf-8"?>
+<WinSSHTerm_WSL_Starter version="2">
+  <install>
+    <command exec="%SYSTEMROOT%\system32\cmd.exe"><![CDATA[/c start ms-windows-store://pdp/?ProductId=9PN20MSR04DW]]></command>
   </install>
-  <setup_ssh exec="ubuntu2204.exe">
-<![CDATA[
-  run "echo '{{WSL.PASS}}' | sudo -S dpkg -l | grep ^ii | sed 's_  _\t_g' | cut -f 2 | grep openssh-server 1> /dev/null && echo '{{WSL.PASS}}' | sudo -S cp /etc/ssh/sshd_config /etc/ssh/sshd_config.winsshterm.bak && echo '{{WSL.PASS}}' | sudo -S apt-get purge -y openssh-server 2>/dev/null"
-  run "echo '{{WSL.PASS}}' | sudo -S apt-get update -y"
-  run "echo '{{WSL.PASS}}' | sudo -S apt-get upgrade -y"
-  run "echo '{{WSL.PASS}}' | sudo -S apt-get install -y openssh-server"
+  <setup_ssh>
+    <command exec="ubuntu2204.exe"><![CDATA[run "echo '{{WSL.PASS}}' | sudo -S dpkg -l | grep ^ii | sed 's_  _\t_g' | cut -f 2 | grep openssh-server 1> /dev/null && echo '{{WSL.PASS}}' | sudo -S cp /etc/ssh/sshd_config /etc/ssh/sshd_config.winsshterm.bak && echo '{{WSL.PASS}}' | sudo -S apt-get purge -y openssh-server 2>/dev/null"
+  run "echo '{{WSL.PASS}}' | sudo -S apt-get update && echo '{{WSL.PASS}}' | sudo -S apt-get install -y openssh-server"
+  run "echo '{{WSL.PASS}}' | sudo -S /etc/init.d/ssh stop
   run "echo '{{WSL.PASS}}' | sudo -S ssh-keygen -A"
   run "echo '{{WSL.PASS}}' | sudo -S sed -i -e '/^#[[:space:]]*[[:space:]]*Port[[:space:]].*/ s/^#[[:space:]]*[[:space:]]*\(Port\)[[:space:]]\(.*\)/\1 {{WSL.PORT}}/i' -- /etc/ssh/sshd_config"
   run "echo '{{WSL.PASS}}' | sudo -S sed -i -e '/^#[[:space:]]*[[:space:]]*ListenAddress[[:space:]].*0\.0\.0\.0/ s/^#[[:space:]]*[[:space:]]*\(ListenAddress\)[[:space:]]\(.*\)/\1 {{WSL.LISTENADDRESS}}/i' -- /etc/ssh/sshd_config"
   run "echo '{{WSL.PASS}}' | sudo -S sed -i -e '/^[[:space:]]*PasswordAuthentication[[:space:]].*/ s/^[[:space:]]*\(PasswordAuthentication\)[[:space:]]\(.*\)/\1 yes/i' -- /etc/ssh/sshd_config"
-  run "echo '{{WSL.PASS}}' | sudo -S diff /etc/ssh/sshd_config /etc/ssh/sshd_config.winsshterm.bak &> /dev/null; if [ $? -ne 0 ]; then echo '{{WSL.PASS}}' | sudo -S mv /etc/ssh/sshd_config.winsshterm.bak /etc/ssh/sshd_config.$(date +%Y%m%d_%H%M%S).bak; else echo '{{WSL.PASS}}' | sudo -S rm /etc/ssh/sshd_config.winsshterm.bak; fi
-]]>
+  run "echo '{{WSL.PASS}}' | sudo -S diff /etc/ssh/sshd_config /etc/ssh/sshd_config.winsshterm.bak &> /dev/null; if [ $? -ne 0 ]; then echo '{{WSL.PASS}}' | sudo -S mv /etc/ssh/sshd_config.winsshterm.bak /etc/ssh/sshd_config.$(date +%Y%m%d_%H%M%S).bak; else echo '{{WSL.PASS}}' | sudo -S rm /etc/ssh/sshd_config.winsshterm.bak; fi]]></command>
   </setup_ssh>
-  <startup_ssh exec="ubuntu2204.exe">
-<![CDATA[
-   run "echo '{{WSL.PASS}}' | sudo -S /etc/init.d/ssh start"
-]]>
+  <startup_ssh>
+    <command exec="ubuntu2204.exe"><![CDATA[run "echo '{{WSL.PASS}}' | sudo -S killall -9 dbus-daemon"]]></command>
+    <command exec="wsl.exe"><![CDATA[-s Ubuntu-22.04
+  -e dbus-launch true]]></command>
+    <command exec="ubuntu2204.exe"><![CDATA[run "echo '{{WSL.PASS}}' | sudo -S /etc/init.d/ssh restart"]]></command>
   </startup_ssh>
 </WinSSHTerm_WSL_Starter>
