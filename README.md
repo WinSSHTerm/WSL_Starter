@@ -22,9 +22,9 @@ Walkthrough for Ubuntu 22.04 LTS on Youtube
 10. Now click on `Close` to close the `WSL Starter` window.
 11. On the left, in the `Connections` window, right-click the `Connect` node and choose `Add connection`
 12. Select the new connection, and fill out these fields in the `Configuration` window (use the values from the `WSL Starter` window), e.g.:
-    - Name: WSL (or choose any other name)
-    - Host/IP: 127.0.0.1 (or localhost)
-    - Port: 2222
+    - Name: `WSL` (or choose any other name)
+    - Host/IP: `localhost` (or `127.0.0.1` for IPv4, or `::1` for IPv6)
+    - Port: `2222`
     - Note:
       - The fields `User` and `Password` will be automatically used from the `WSL Starter` window, if they are empty
       - If the values for `Host/IP` and `Port` don't match the values from the `WSL Starter` window, the automatic start feature won't work
