@@ -11,7 +11,7 @@ Walkthrough for Ubuntu 22.04 LTS on Youtube
 2. Ensure that you use WinSSHTerm 2.33.0 or higher.
 ### Install a linux distribution and setup a user
 3. Open up WinSSHTerm and go to Tools->WSL Starter. You will see the `WSL Starter` window.
-4. Choose a linux distribution on [https://github.com/WinSSHTerm/WSL_Starter](https://github.com/WinSSHTerm/WSL_Starter) and copy&paste the contents of the XML file into the text field of the `WLS Starter` window.
+4. Choose a linux distribution on [https://github.com/WinSSHTerm/WSL_Starter](https://github.com/WinSSHTerm/WSL_Starter) and copy&paste the contents of the XML file into the text field of the `WSL Starter` window.
 5. Now you can install the linux distribution by clicking on the Install button. This will open up the app page in the Microsoft Store. Click on `Install` and then on `Open`
 6. A terminal will open up, and after some time you will be prompted to enter a username and password (which you can both freely choose). After that you will get a linux prompt. You can then close the terminal.
 ### Install, configure and launch the SSH server
@@ -23,7 +23,9 @@ Walkthrough for Ubuntu 22.04 LTS on Youtube
 11. On the left, in the `Connections` window, right-click the `Connect` node and choose `Add connection`
 12. Select the new connection, and fill out these fields in the `Configuration` window (use the values from the `WSL Starter` window), e.g.:
     - Name: WSL (or choose any other name)
-    - Host/IP: 127.0.0.1
+    - Host/IP: 127.0.0.1 (or localhost)
     - Port: 2222
-    - Note: The fields `User` and `Password` will be automatically used from the `WSL Starter` window, if they are empty
+    - Note:
+      - The fields `User` and `Password` will be automatically used from the `WSL Starter` window, if they are empty
+      - If the values for `Host/IP` and `Port` don't match the values from the `WSL Starter` window, the automatic start feature won't work
 13. Now double-click the connection to open up the PuTTY session. The SSH server will be started, if needed. You should now be successfully logged in with your user. You should be able to become root with `sudo su -`
